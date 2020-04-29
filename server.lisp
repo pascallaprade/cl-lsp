@@ -164,7 +164,7 @@
      :|documentRangeFormattingProvider| t
      :|documentOnTypeFormattingProvider| (make-instance
                                           '|DocumentOnTypeFormattingOptions|
-                                          :|firstTriggerCharacter| ")")
+                                          :|firstTriggerCharacter| (string #\Newline))
      :|renameProvider| t
      :|documentLinkProvider| nil
      :|executeCommandProvider| nil

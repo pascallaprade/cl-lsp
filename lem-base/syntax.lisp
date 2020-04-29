@@ -104,7 +104,7 @@
 
 (defstruct (syntax-table (:constructor %make-syntax-table))
   (space-chars '(#\space #\tab #\newline))
-  (symbol-chars '(#\_ #\-))
+  (symbol-chars '(#\_ #\- #\. #\: #\/))
   (paren-alist '((#\( . #\))
                  (#\[ . #\])
                  (#\{ . #\})))

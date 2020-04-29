@@ -12,26 +12,25 @@
 (in-package :cl-lsp/formatting)
 
 (defun indent-line (p &optional editp)
-  (unless (blank-line-p p)
-    (let ((line-number (1- (line-number-at-point p)))
-          (old-charpos (point-charpos (back-to-indentation p)))
-          (new-column (calc-indent (copy-point p :temporary))))
-      (when new-column
-        (when editp
-          (line-start p)
-          (delete-character p old-charpos)
-          (insert-character p #\space new-column))
-        (convert-to-hash-table
-         (make-instance '|TextEdit|
-                        :|range| (make-instance
-                                  '|Range|
-                                  :|start| (make-instance '|Position|
-                                                          :|line| line-number
-                                                          :|character| 0)
-                                  :|end| (make-instance '|Position|
+  (let ((line-number (1- (line-number-at-point p)))
+        (old-charpos (point-charpos (back-to-indentation p)))
+        (new-column (calc-indent (copy-point p :temporary))))
+    (when new-column
+      (when editp
+        (line-start p)
+        (delete-character p old-charpos)
+        (insert-character p #\space new-column))
+      (convert-to-hash-table
+       (make-instance '|TextEdit|
+                      :|range| (make-instance
+                                '|Range|
+                                :|start| (make-instance '|Position|
                                                         :|line| line-number
-                                                        :|character| old-charpos))
-                        :|newText| (make-string new-column :initial-element #\space)))))))
+                                                        :|character| 0)
+                                :|end| (make-instance '|Position|
+                                                      :|line| line-number
+                                                      :|character| old-charpos))
+                      :|newText| (make-string new-column :initial-element #\space))))))
 
 (defun set-formatting-options (options)
   (setf (tab-size) (slot-value options '|tabSize|)))
