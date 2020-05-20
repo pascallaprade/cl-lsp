@@ -1,0 +1,6 @@
+[submodule "prepl"]
+	path = prepl
+	url = https://github.com/ailisp/prepl
+[submodule "linedit"]
+	path = linedit
+	url = https://github.com/ailisp/linedit
