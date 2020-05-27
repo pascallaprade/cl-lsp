@@ -45,13 +45,15 @@
                   (yason:encode hash out)))))
 
 (defun call-with-error-handle (function)
-  (handler-bind ((error (lambda (c)
-                          (log-format "~A~%~%~A~%"
-                                      c
-                                      (with-output-to-string (stream)
-                                        (uiop:print-backtrace :stream stream
-                                                              :condition c))))))
-    (funcall function)))
+  (catch 'call-with-error-handle 
+    (handler-bind ((error (lambda (c)
+                            (log-format "~A~%~%~A~%"
+                                        c
+                                        (with-output-to-string (stream)
+                                          (uiop:print-backtrace :stream stream
+                                                                :condition c)))
+                            (throw 'call-with-error-handle nil))))
+      (funcall function))))
 
 (defmacro with-error-handle (&body body)
   `(call-with-error-handle (lambda () ,@body)))
