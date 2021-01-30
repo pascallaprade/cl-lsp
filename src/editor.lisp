@@ -27,34 +27,34 @@
 
 (defmethod open-file-contents-using-editor ((editor lem) uri text)
   (let ((buffer
-          (lem-base:make-buffer uri
+          (cl-lsp.lem-base:make-buffer uri
                                 :temporary t
                                 :syntax-table lem-lisp-syntax:*syntax-table*)))
-    (lem-base:insert-string (lem-base:buffer-point buffer) text)
+    (cl-lsp.lem-base:insert-string (cl-lsp.lem-base:buffer-point buffer) text)
     buffer))
 
 (defmethod close-file-contents-using-editor ((editor lem) file-contents)
-  (check-type file-contents lem-base:buffer)
-  (lem-base:delete-buffer file-contents)
+  (check-type file-contents cl-lsp.lem-base:buffer)
+  (cl-lsp.lem-base:delete-buffer file-contents)
   (values))
 
 (defun move-to-position (point position)
-  (lem-base:move-to-line point (1- (file-contents-position-line position)))
-  (lem-base:line-offset point 0 (file-contents-position-character position)))
+  (cl-lsp.lem-base:move-to-line point (1- (file-contents-position-line position)))
+  (cl-lsp.lem-base:line-offset point 0 (file-contents-position-character position)))
 
 (defmethod replace-file-contents-using-editor ((editor lem) file-contents text)
   (let ((buffer file-contents))
-    (lem-base:erase-buffer buffer)
-    (lem-base:insert-string (lem-base:buffer-point buffer) text)))
+    (cl-lsp.lem-base:erase-buffer buffer)
+    (cl-lsp.lem-base:insert-string (cl-lsp.lem-base:buffer-point buffer) text)))
 
 (defmethod edit-file-contents-using-editor ((editor lem) file-contents range text)
   (let* ((buffer file-contents)
-         (point (lem-base:buffer-point buffer)))
+         (point (cl-lsp.lem-base:buffer-point buffer)))
     (move-to-position point (file-contents-range-start range))
-    (lem-base:with-point ((end point))
+    (cl-lsp.lem-base:with-point ((end point))
       (move-to-position end (file-contents-range-end range))
-      (lem-base:delete-between-points point end))
-    (lem-base:insert-string point text)))
+      (cl-lsp.lem-base:delete-between-points point end))
+    (cl-lsp.lem-base:insert-string point text)))
 
 
 (defvar *editor* (make-instance 'lem))

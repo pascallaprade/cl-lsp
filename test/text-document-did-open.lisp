@@ -30,4 +30,4 @@
         (let ((text-document (find-text-document controller "file://Users/user/hoge.lisp")))
           (ok text-document)
           (ok (equal whole-text
-                     (lem-base:buffer-text (text-document-file-contents text-document)))))))))
+                     (cl-lsp.lem-base:buffer-text (text-document-file-contents text-document)))))))))
