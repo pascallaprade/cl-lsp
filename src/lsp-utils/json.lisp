@@ -1,4 +1,4 @@
-(defpackage :cl-lsp.lem-lsp-utils/json
+(defpackage :lem-lsp-utils/json
   (:use :cl)
   (:import-from :cl-package-locks)
   (:import-from :alexandria)
@@ -30,7 +30,7 @@
            :json-array-p
            :json-object-p
            :json-boolean-p))
-(in-package :cl-lsp.lem-lsp-utils/json)
+(in-package :lem-lsp-utils/json)
 
 (cl-package-locks:lock-package :lem-lsp-utils/json)
 

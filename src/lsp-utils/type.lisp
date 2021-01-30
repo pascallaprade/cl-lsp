@@ -1,7 +1,7 @@
-(defpackage :cl-lsp.lem-lsp-utils/type
+(defpackage :lem-lsp-utils/type
   (:use :cl)
   (:import-from :cl-package-locks)
-  (:import-from :cl-lsp.lem-lsp-utils/json
+  (:import-from :lem-lsp-utils/json
                 :json-array-p
                 :json-object-p)
   (:export :ts-array

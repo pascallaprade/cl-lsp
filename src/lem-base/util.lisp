@@ -1,4 +1,4 @@
-(in-package :cl-lsp.lem-base)
+(in-package :lem-base)
 
 (export '(pdebug
           utf8-bytes

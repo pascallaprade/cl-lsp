@@ -1,4 +1,4 @@
-(in-package :cl-lsp.lem-base)
+(in-package :lem-base)
 
 (export '(*find-file-hook*
           *before-save-hook*

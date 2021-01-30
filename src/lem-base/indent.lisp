@@ -1,4 +1,4 @@
-(in-package :cl-lsp.lem-base)
+(in-package :lem-base)
 
 (export '(back-to-indentation
           indent-line

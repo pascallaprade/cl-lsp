@@ -1,9 +1,9 @@
-(defpackage :cl-lsp.lem-lisp-syntax.indent
-  (:use :cl :cl-lsp.lem-base)
+(defpackage :lem-lisp-syntax.indent
+  (:use :cl :lem-base)
   (:export :*get-method-function*
            :set-indentation
            :calc-indent))
-(in-package :cl-lsp.lem-lisp-syntax.indent)
+(in-package :lem-lisp-syntax.indent)
 
 (defparameter *body-indent* 2)
 (defparameter *max-depth* 4)

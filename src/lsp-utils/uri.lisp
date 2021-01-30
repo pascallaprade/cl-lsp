@@ -1,4 +1,4 @@
-(defpackage :cl-lsp.lem-lsp-utils/uri
+(defpackage :lem-lsp-utils/uri
   (:use :cl)
   (:import-from :quri)
   (:export :pathname-to-uri

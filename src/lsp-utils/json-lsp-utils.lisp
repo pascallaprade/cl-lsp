@@ -1,10 +1,10 @@
-(defpackage :cl-lsp.lem-lsp-utils/json-lsp-utils
+(defpackage :lem-lsp-utils/json-lsp-utils
   (:use :cl
-        :cl-lsp.lem-lsp-utils/json
-        :cl-lsp.lem-lsp-utils/type)
+        :lem-lsp-utils/json
+        :lem-lsp-utils/type)
   (:import-from :cl-package-locks)
   (:export :json-type-error))
-(in-package :cl-lsp.lem-lsp-utils/json-lsp-utils)
+(in-package :lem-lsp-utils/json-lsp-utils)
 
 (cl-package-locks:lock-package :lem-lsp-utils/json-lsp-utils)
 

@@ -1,9 +1,9 @@
-(defpackage :cl-lsp.lem-lsp-utils/protocol-generator
+(defpackage :lem-lsp-utils/protocol-generator
   (:use :cl
         :alexandria)
   (:import-from :cl-package-locks)
-  (:import-from :cl-lsp.lem-lsp-utils/type)
-  (:import-from :cl-lsp.lem-lsp-utils/json)
+  (:import-from :lem-lsp-utils/type)
+  (:import-from :lem-lsp-utils/json)
   (:import-from :cl-change-case)
   (:import-from :trivial-types)
   (:import-from :cl-ppcre)

@@ -1,7 +1,7 @@
-(defpackage :cl-lsp.lem-lisp-syntax.enclosing
-  (:use :cl :cl-lsp.lem-base)
+(defpackage :lem-lisp-syntax.enclosing
+  (:use :cl :lem-base)
   (:export :search-local-definition))
-(in-package :cl-lsp.lem-lisp-syntax.enclosing)
+(in-package :lem-lisp-syntax.enclosing)
 
 (defvar *variable-binding-ops*
   '(("let" &bindings 1 &body 2)

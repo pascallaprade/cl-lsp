@@ -1,6 +1,6 @@
-(load-asd (merge-pathnames "cl-lsp.lem-base.asd" *load-pathname*))
-(load-asd (merge-pathnames "cl-lsp.lem-lisp-syntax.asd" *load-pathname*))
-(load-asd (merge-pathnames "cl-lsp.lem-lsp-utils.asd" *load-pathname*))
+(load-asd (merge-pathnames "lem-base.asd" *load-pathname*))
+(load-asd (merge-pathnames "lem-lisp-syntax.asd" *load-pathname*))
+(load-asd (merge-pathnames "lem-lsp-utils.asd" *load-pathname*))
 
 (defsystem "cl-lsp"
   :depends-on ("bordeaux-threads"
@@ -15,9 +15,9 @@
                "jsonrpc"
                "yason"
                "jsonrpc/transport/stdio"
-               "cl-lsp.lem-base"
-               "cl-lsp.lem-lisp-syntax"
-               "cl-lsp.lem-lsp-utils"
+               "lem-base"
+               "lem-lisp-syntax"
+               "lem-lsp-utils"
                "cl-package-locks"
                "trivial-package-local-nicknames")
   :serial t
