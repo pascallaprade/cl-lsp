@@ -15,9 +15,9 @@
                "jsonrpc"
                "yason"
                "jsonrpc/transport/stdio"
-               "lem-base"
-               "lem-lisp-syntax"
-               "lem-lsp-utils"
+               "cl-lsp.lem-base"
+               "cl-lsp.lem-lisp-syntax"
+               "cl-lsp.lem-lsp-utils"
                "cl-package-locks"
                "trivial-package-local-nicknames")
   :serial t

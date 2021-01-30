@@ -1,7 +1,7 @@
 (cl-lsp/defpackage:defpackage :cl-lsp/text-document-controller
   (:use :cl)
-  (:local-nicknames (:protocol :lem-lsp-utils/protocol)
-                    (:json :lem-lsp-utils/json)
+  (:local-nicknames (:protocol :cl-lsp.lem-lsp-utils/protocol)
+                    (:json :cl-lsp.lem-lsp-utils/json)
                     (:editor :cl-lsp/editor))
   (:export :text-document-uri
            :text-document-language-id

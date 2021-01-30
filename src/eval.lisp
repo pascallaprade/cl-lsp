@@ -10,7 +10,7 @@
         :cl-lsp/server)
   (:import-from :cl-lsp/methods/lifetime
                 :register-initialized-hook)
-  (:import-from :lem-base
+  (:import-from :cl-lsp.lem-base
                 :with-point
                 :points-to-string))
 (in-package :cl-lsp/eval)

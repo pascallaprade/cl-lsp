@@ -4,8 +4,8 @@
         :cl-lsp/server
         :cl-lsp/test/test-server
         :cl-lsp/text-document-controller)
-  (:local-nicknames (:protocol :lem-lsp-utils/protocol)
-                    (:json :lem-lsp-utils/json)))
+  (:local-nicknames (:protocol :cl-lsp.lem-lsp-utils/protocol)
+                    (:json :cl-lsp.lem-lsp-utils/json)))
 (in-package :cl-lsp/test/text-document-did-open)
 
 (deftest test

@@ -3,9 +3,9 @@
         :cl-lsp/protocol
         :cl-lsp/protocol-util
         :cl-lsp/logger
-        :lem-base)
+        :cl-lsp.lem-base)
   (:shadow :indent-line)
-  (:import-from :lem-lisp-syntax
+  (:import-from :cl-lsp.lem-lisp-syntax
                 :calc-indent)
   (:export :on-type-formatting
            :range-formatting

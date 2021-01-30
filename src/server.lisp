@@ -2,8 +2,8 @@
   (:use :cl)
   (:import-from :cl-lsp/logger
                 :log-format)
-  (:local-nicknames (:protocol :lem-lsp-utils/protocol)
-                    (:json :lem-lsp-utils/json))
+  (:local-nicknames (:protocol :cl-lsp.lem-lsp-utils/protocol)
+                    (:json :cl-lsp.lem-lsp-utils/json))
   (:export
    :call
    :request-method-name
@@ -75,7 +75,7 @@
      (alexandria:switch ((symbol-package params-type))
        ((load-time-value (find-package :cl-lsp/protocol)) ;fallback
         (cl-lsp/protocol:convert-from-hash-table params-type params))
-       ((load-time-value (find-package :lem-lsp-utils/protocol))
+       ((load-time-value (find-package :cl-lsp.lem-lsp-utils/protocol))
         (json:coerce-json params params-type))))))
 
 (defun convert-response (response)

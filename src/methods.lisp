@@ -7,14 +7,14 @@
         :cl-lsp/swank
         :cl-lsp/formatting
         ;; :cl-lsp/server
-        :lem-base)
+        :cl-lsp.lem-base)
   (:import-from :cl-lsp/server
                 :define-method)
-  (:import-from :lem-lisp-syntax
+  (:import-from :cl-lsp.lem-lisp-syntax
                 :*syntax-table*
                 :search-local-definition)
-  (:local-nicknames (:protocol :lem-lsp-utils/protocol)
-                    (:json :lem-lsp-utils/json))
+  (:local-nicknames (:protocol :cl-lsp.lem-lsp-utils/protocol)
+                    (:json :cl-lsp.lem-lsp-utils/json))
   (:export :*initialized-hooks*
            :get-buffer-from-uri
            :with-document-position

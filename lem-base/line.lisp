@@ -1,4 +1,4 @@
-(in-package :lem-base)
+(in-package :cl-lsp.lem-base)
 
 (defconstant +line-increment+ 256)
 

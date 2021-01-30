@@ -1,8 +1,8 @@
-(defpackage :lem-lisp-syntax.syntax-table
-  (:use :cl :lem-base)
+(defpackage :cl-lsp.lem-lisp-syntax.syntax-table
+  (:use :cl :cl-lsp.lem-base)
   (:export :*get-features-function*
            :*syntax-table*))
-(in-package :lem-lisp-syntax.syntax-table)
+(in-package :cl-lsp.lem-lisp-syntax.syntax-table)
 
 (defvar *get-features-function* nil)
 

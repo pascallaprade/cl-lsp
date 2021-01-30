@@ -6,8 +6,8 @@
                 :set-client-capabilities)
   (:import-from :cl-lsp/swank
                 :swank-init)
-  (:local-nicknames (:protocol :lem-lsp-utils/protocol)
-                    (:json :lem-lsp-utils/json))
+  (:local-nicknames (:protocol :cl-lsp.lem-lsp-utils/protocol)
+                    (:json :cl-lsp.lem-lsp-utils/json))
   (:export :register-initialized-hook))
 (in-package :cl-lsp/methods/lifetime)
 

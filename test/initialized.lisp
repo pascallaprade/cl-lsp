@@ -3,8 +3,8 @@
         :rove
         :cl-lsp/server
         :cl-lsp/test/test-server)
-  (:local-nicknames (:protocol :lem-lsp-utils/protocol)
-                    (:json :lem-lsp-utils/json)))
+  (:local-nicknames (:protocol :cl-lsp.lem-lsp-utils/protocol)
+                    (:json :cl-lsp.lem-lsp-utils/json)))
 (in-package :cl-lsp/test/initialized)
 
 (deftest did-not-initialized

@@ -1,2 +1,2 @@
-(defpackage :lem-base
+(defpackage :cl-lsp.lem-base
   (:use :cl))
