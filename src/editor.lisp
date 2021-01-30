@@ -29,7 +29,7 @@
   (let ((buffer
           (cl-lsp.lem-base:make-buffer uri
                                 :temporary t
-                                :syntax-table lem-lisp-syntax:*syntax-table*)))
+                                :syntax-table cl-lsp.lem-lisp-syntax:*syntax-table*)))
     (cl-lsp.lem-base:insert-string (cl-lsp.lem-base:buffer-point buffer) text)
     buffer))
 
