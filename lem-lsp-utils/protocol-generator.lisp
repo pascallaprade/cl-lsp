@@ -481,7 +481,7 @@
 (defmethod to-lisp-type ((type simple-type))
   (switch ((simple-type-name type) :test #'string=)
     ("any" t)
-    ("boolean" 'lem-lsp-utils/type:ts-boolean)
+    ("boolean" 'cl-lsp.lem-lsp-utils/type:ts-boolean)
     ("number" 'number)
     ("string" 'string)
     ("null" '(or null (eql :null))) ; TODO: jsonライブラリ毎の:nullやnilという違いを考慮する
@@ -493,13 +493,13 @@
 
 (defmethod to-lisp-type ((type array-type))
   (let ((item-type (to-lisp-type (array-type-item-type type))))
-    `(lem-lsp-utils/type:ts-array ,item-type)))
+    `(cl-lsp.lem-lsp-utils/type:ts-array ,item-type)))
 
 (defmethod to-lisp-type ((type value-expression))
-  `(lem-lsp-utils/type:ts-equal-specializer ,(value-expression-value type)))
+  `(cl-lsp.lem-lsp-utils/type:ts-equal-specializer ,(value-expression-value type)))
 
 (defmethod to-lisp-type ((type interface))
-  `(lem-lsp-utils/type:ts-interface
+  `(cl-lsp.lem-lsp-utils/type:ts-interface
     ,@(mapcar (lambda (element)
                 (list (element-name element)
                       :type (to-lisp-type (element-type element))
@@ -507,11 +507,11 @@
               (interface-elements type))))
 
 (defmethod to-lisp-type ((type property-type))
-  `(lem-lsp-utils/type:ts-object ,(to-lisp-type (property-type-key-type type))
+  `(cl-lsp.lem-lsp-utils/type:ts-object ,(to-lisp-type (property-type-key-type type))
                                 ,(to-lisp-type (property-type-value-type type))))
 
 (defmethod to-lisp-type ((type tuple-type))
-  `(lem-lsp-utils/type:ts-tuple ,@(mapcar #'to-lisp-type (tuple-type-types type))))
+  `(cl-lsp.lem-lsp-utils/type:ts-tuple ,@(mapcar #'to-lisp-type (tuple-type-types type))))
 
 (defun element-to-slot-specifier (class-name element)
   (with-slots (name optional-p comment type) element
