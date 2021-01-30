@@ -532,7 +532,7 @@
       `(defclass ,class-name
            ,(if extends
                 (mapcar #'symbolize extends)
-                '(lem-lsp-utils/json:object))
+                '(cl-lsp.lem-lsp-utils/json:object))
          ,(mapcar (curry #'element-to-slot-specifier class-name) elements)))))
 
 (defmethod to-lisp ((namespace namespace))
