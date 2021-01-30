@@ -26,9 +26,10 @@
     (ql:quickload :jsonrpc/transport/tcp :silent t))
   (with-environment :tcp
     (start-swank-if-enabled)
-    (with-log-stream (*error-output*)
-      (log-format "server-listen~%mode:tcp~%port:~D~%" port)
-      (server-listen (make-instance 'tcp-server :port port)))))
+    (with-open-stream (*error-output* (make-broadcast-stream))
+      (with-log-stream ("~/lsp-log")
+        (log-format "server-listen~%mode:tcp~%port:~D~%" port)
+        (server-listen (make-instance 'tcp-server :port port))))))
 
 (defun run-stdio-mode ()
   (with-environment :stdio

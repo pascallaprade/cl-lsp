@@ -42,6 +42,94 @@
 (defmacro with-text-document-position ((point) params &body body)
   `(call-with-text-document-position ,params (lambda (,point) ,@body)))
 
+(defun notify-show-message (type message)
+  (log-format "window/showMessage: ~A ~A~%" type message)
+  (jsonrpc:notify-async *server*
+                        "window/showMessage"
+                        (convert-to-hash-table
+                         (make-instance '|ShowMessageParams|
+                                        :|type| type
+                                        :|message| message))))
+
+(defun notify-log-message (type message)
+  (log-format "window/logMessage: ~A ~A~%" type message)
+  (jsonrpc:notify-async *server*
+                        "window/logMessage"
+                        (convert-to-hash-table
+                         (make-instance '|LogMessageParams|
+                                        :|type| type
+                                        :|message| message))))
+
+(defvar *initialize-params* nil)
+
+(defun check-initialized (method-name)
+  (when (and (string/= method-name "initialize")
+             (null *initialize-params*))
+    (alexandria:plist-hash-table
+     (list "code" -32002
+           "message" "did not initialize")
+     :test 'equal)))
+
+(define-method "initialize" (params |InitializeParams|)
+  (setf *initialize-params* params)
+  (convert-to-hash-table
+   (make-instance
+    '|InitializeResult|
+    :|capabilities|
+    (make-instance
+     '|ServerCapabilities|
+     :|textDocumentSync| (progn
+                           #+(or)
+                           (make-instance
+                            '|TextDocumentSyncOptions|
+                            :|openClose| t
+                            :|change| |TextDocumentSyncKind.Incremental|
+                            :|willSave| 'yason:false
+                            :|willSaveWaitUntil| 'yason:false
+                            :|save| (make-instance '|SaveOptions| :|includeText| t))
+                           |TextDocumentSyncKind.Incremental|)
+     :|hoverProvider| t
+     :|completionProvider| (make-instance
+                            '|CompletionOptions|
+                            :|resolveProvider| nil
+                            :|triggerCharacters| (loop :for code
+                                                       :from (char-code #\a)
+                                                       :below (char-code #\z)
+                                                       :collect (string (code-char code))))
+     :|signatureHelpProvider| (make-instance
+                               '|SignatureHelpOptions|
+                               :|triggerCharacters| (list " "))
+     :|definitionProvider| t
+     :|referencesProvider| t
+     :|documentHighlightProvider| t
+     :|documentSymbolProvider| t
+     :|workspaceSymbolProvider| t
+     :|codeActionProvider| nil
+     :|codeLensProvider| nil
+     :|documentFormattingProvider| t
+     :|documentRangeFormattingProvider| t
+     :|documentOnTypeFormattingProvider| (make-instance
+                                          '|DocumentOnTypeFormattingOptions|
+                                          :|firstTriggerCharacter| (string #\Newline))
+     :|renameProvider| t
+     :|documentLinkProvider| nil
+     :|executeCommandProvider| nil
+     :|experimental| nil))))
+
+(define-method "initialized" (params)
+  (swank-init)
+  (mapc #'funcall *initialized-hooks*)
+  nil)
+
+(define-method "shutdown" (params)
+  t)
+
+(define-method "exit" (params)
+  (values))
+
+(define-method "workspace/didChangeConfiguration" (params)
+  nil)
+
 (define-method "workspace/symbol" (params protocol:workspace-symbol-params) ()
   (let* ((query (protocol:workspace-symbol-params-query params))
          (limit 42))

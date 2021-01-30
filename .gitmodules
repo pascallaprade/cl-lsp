@@ -1,0 +1,6 @@
+[submodule "vendor/linedit"]
+	path = vendor/linedit
+	url = https://github.com/ailisp/linedit.git
+[submodule "vendor/prepl"]
+	path = vendor/prepl
+	url = https://github.com/ailisp/prepl.git
